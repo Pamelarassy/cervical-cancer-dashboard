@@ -33,7 +33,7 @@ with left_col:
 # -------------------- RIGHT COLUMN CHARTS --------------------
 with right_col:
     # Pie Chart
-    pie_path = "dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv"
+    pie_path= "dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv"
     df_pie = pd.read_csv(pie_path)
     df_pie.columns = df_pie.columns.str.strip().str.lower()
 

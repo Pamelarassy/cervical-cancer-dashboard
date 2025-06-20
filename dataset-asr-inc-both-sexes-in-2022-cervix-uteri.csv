@@ -1,0 +1,186 @@
+Cancer id,Cancer label,Population code (ISO/UN),Population,Alpha‑3 code,Sex,Type,ASR (World) per 100 000
+23,Cervix uteri,004,Afghanistan,AFG,0,0,10.27
+23,Cervix uteri,008,Albania,ALB,0,0,8.7
+23,Cervix uteri,012,Algeria,DZA,0,0,7.96
+23,Cervix uteri,024,Angola,AGO,0,0,30.4
+23,Cervix uteri,031,Azerbaijan,AZE,0,0,8.18
+23,Cervix uteri,032,Argentina,ARG,0,0,16.78
+23,Cervix uteri,036,Australia,AUS,0,0,5.25
+23,Cervix uteri,040,Austria,AUT,0,0,5.87
+23,Cervix uteri,044,Bahamas,BHS,0,0,15.15
+23,Cervix uteri,048,Bahrain,BHR,0,0,2.66
+23,Cervix uteri,050,Bangladesh,BGD,0,0,11.28
+23,Cervix uteri,051,Armenia,ARM,0,0,6.83
+23,Cervix uteri,052,Barbados,BRB,0,0,13.75
+23,Cervix uteri,056,Belgium,BEL,0,0,6.3
+23,Cervix uteri,064,Bhutan,BTN,0,0,13.56
+23,Cervix uteri,068,Bolivia (Plurinational State of),BOL,0,0,38.65
+23,Cervix uteri,070,Bosnia Herzegovina,BIH,0,0,12.33
+23,Cervix uteri,072,Botswana,BWA,0,0,39.06
+23,Cervix uteri,076,Brazil,BRA,0,0,12.69
+23,Cervix uteri,084,Belize,BLZ,0,0,17.27
+23,Cervix uteri,090,Solomon Islands,SLB,0,0,26.15
+23,Cervix uteri,096,Brunei Darussalam,BRN,0,0,20.01
+23,Cervix uteri,100,Bulgaria,BGR,0,0,15.41
+23,Cervix uteri,104,Myanmar,MMR,0,0,21.44
+23,Cervix uteri,108,Burundi,BDI,0,0,43.58
+23,Cervix uteri,112,Belarus,BLR,0,0,9.25
+23,Cervix uteri,116,Cambodia,KHM,0,0,15.24
+23,Cervix uteri,120,Cameroon,CMR,0,0,33.11
+23,Cervix uteri,124,Canada,CAN,0,0,6.63
+23,Cervix uteri,132,Cape Verde,CPV,0,0,16.07
+23,Cervix uteri,140,Central African Republic,CAF,0,0,21.77
+23,Cervix uteri,144,Sri Lanka,LKA,0,0,9.18
+23,Cervix uteri,148,Chad,TCD,0,0,23.51
+23,Cervix uteri,152,Chile,CHL,0,0,11.34
+23,Cervix uteri,156,China,CHN,0,0,13.83
+23,Cervix uteri,170,Colombia,COL,0,0,13.68
+23,Cervix uteri,174,Comoros,COM,0,0,52.01
+23,Cervix uteri,178,"Congo, Republic of",COG,0,0,22.32
+23,Cervix uteri,180,"Congo, Democratic Republic of",COD,0,0,32.91
+23,Cervix uteri,188,Costa Rica,CRI,0,0,10.6
+23,Cervix uteri,191,Croatia,HRV,0,0,8.25
+23,Cervix uteri,192,Cuba,CUB,0,0,12.83
+23,Cervix uteri,196,Cyprus,CYP,0,0,6.99
+23,Cervix uteri,203,Czechia,CZE,0,0,8.01
+23,Cervix uteri,204,Benin,BEN,0,0,18.12
+23,Cervix uteri,208,Denmark,DNK,0,0,9.74
+23,Cervix uteri,214,Dominican Republic,DOM,0,0,15.63
+23,Cervix uteri,218,Ecuador,ECU,0,0,17.66
+23,Cervix uteri,222,El Salvador,SLV,0,0,15.19
+23,Cervix uteri,226,Equatorial Guinea,GNQ,0,0,33.23
+23,Cervix uteri,231,Ethiopia,ETH,0,0,22.28
+23,Cervix uteri,232,Eritrea,ERI,0,0,16.41
+23,Cervix uteri,233,Estonia,EST,0,0,11.81
+23,Cervix uteri,242,Fiji,FJI,0,0,34.97
+23,Cervix uteri,246,Finland,FIN,0,0,4.63
+23,Cervix uteri,250,France (metropolitan),FRA,0,0,6.55
+23,Cervix uteri,254,French Guyana,GUF,0,0,12.25
+23,Cervix uteri,258,French Polynesia,PYF,0,0,8.29
+23,Cervix uteri,262,Djibouti,DJI,0,0,16.53
+23,Cervix uteri,266,Gabon,GAB,0,0,32.48
+23,Cervix uteri,268,Georgia,GEO,0,0,10.35
+23,Cervix uteri,270,The Republic of the Gambia,GMB,0,0,39.37
+23,Cervix uteri,275,Gaza Strip and West Bank,PSE,0,0,3.12
+23,Cervix uteri,276,Germany,DEU,0,0,7.14
+23,Cervix uteri,288,Ghana,GHA,0,0,27
+23,Cervix uteri,300,Greece,GRC,0,0,5.46
+23,Cervix uteri,312,"France, Guadeloupe",GLP,0,0,9.89
+23,Cervix uteri,316,Guam,GUM,0,0,18.96
+23,Cervix uteri,320,Guatemala,GTM,0,0,21.49
+23,Cervix uteri,324,Guinea,GIN,0,0,55.01
+23,Cervix uteri,328,Guyana,GUY,0,0,30.31
+23,Cervix uteri,332,Haiti,HTI,0,0,16.59
+23,Cervix uteri,340,Honduras,HND,0,0,19.5
+23,Cervix uteri,348,Hungary,HUN,0,0,12.62
+23,Cervix uteri,352,Iceland,ISL,0,0,9.37
+23,Cervix uteri,356,India,IND,0,0,17.71
+23,Cervix uteri,360,Indonesia,IDN,0,0,23.31
+23,Cervix uteri,364,"Iran, Islamic Republic of",IRN,0,0,2.53
+23,Cervix uteri,368,Iraq,IRQ,0,0,2.18
+23,Cervix uteri,372,Ireland,IRL,0,0,7.47
+23,Cervix uteri,376,Israel,ISR,0,0,6.24
+23,Cervix uteri,380,Italy,ITA,0,0,4.99
+23,Cervix uteri,384,Côte d'Ivoire,CIV,0,0,32.04
+23,Cervix uteri,388,Jamaica,JAM,0,0,20.4
+23,Cervix uteri,392,Japan,JPN,0,0,12.53
+23,Cervix uteri,398,Kazakhstan,KAZ,0,0,15.52
+23,Cervix uteri,400,Jordan,JOR,0,0,3.19
+23,Cervix uteri,404,Kenya,KEN,0,0,32.83
+23,Cervix uteri,408,"Korea, Democratic People Republic of",PRK,0,0,11.76
+23,Cervix uteri,410,"Korea, Republic of",KOR,0,0,8.59
+23,Cervix uteri,414,Kuwait,KWT,0,0,3.06
+23,Cervix uteri,417,Kyrgyzstan,KGZ,0,0,14.14
+23,Cervix uteri,418,Lao People's Democratic Republic,LAO,0,0,11.95
+23,Cervix uteri,422,Lebanon,LBN,0,0,3.59
+23,Cervix uteri,426,Lesotho,LSO,0,0,60.49
+23,Cervix uteri,428,Latvia,LVA,0,0,16.91
+23,Cervix uteri,430,Liberia,LBR,0,0,39.61
+23,Cervix uteri,434,Libya,LBY,0,0,8
+23,Cervix uteri,440,Lithuania,LTU,0,0,13.69
+23,Cervix uteri,442,Luxembourg,LUX,0,0,4.35
+23,Cervix uteri,450,Madagascar,MDG,0,0,41.77
+23,Cervix uteri,454,Malawi,MWI,0,0,70.85
+23,Cervix uteri,458,Malaysia,MYS,0,0,10.33
+23,Cervix uteri,462,Maldives,MDV,0,0,22.64
+23,Cervix uteri,466,Mali,MLI,0,0,43.14
+23,Cervix uteri,470,Malta,MLT,0,0,4.22
+23,Cervix uteri,474,"France, Martinique",MTQ,0,0,7.5
+23,Cervix uteri,478,Mauritania,MRT,0,0,28.29
+23,Cervix uteri,480,Mauritius,MUS,0,0,12.9
+23,Cervix uteri,484,Mexico,MEX,0,0,13.18
+23,Cervix uteri,496,Mongolia,MNG,0,0,20.19
+23,Cervix uteri,498,Republic of Moldova,MDA,0,0,14.18
+23,Cervix uteri,499,Montenegro,MNE,0,0,11.96
+23,Cervix uteri,504,Morocco,MAR,0,0,11.97
+23,Cervix uteri,508,Mozambique,MOZ,0,0,47.79
+23,Cervix uteri,512,Oman,OMN,0,0,6.44
+23,Cervix uteri,516,Namibia,NAM,0,0,33.45
+23,Cervix uteri,524,Nepal,NPL,0,0,14.15
+23,Cervix uteri,528,The Netherlands,NLD,0,0,6.67
+23,Cervix uteri,540,New Caledonia,NCL,0,0,14.17
+23,Cervix uteri,548,Vanuatu,VUT,0,0,18.15
+23,Cervix uteri,554,New Zealand,NZL,0,0,4.93
+23,Cervix uteri,558,Nicaragua,NIC,0,0,20.61
+23,Cervix uteri,562,Niger,NER,0,0,9.31
+23,Cervix uteri,566,Nigeria,NGA,0,0,26.18
+23,Cervix uteri,578,Norway,NOR,0,0,10.91
+23,Cervix uteri,586,Pakistan,PAK,0,0,5.4
+23,Cervix uteri,591,Panama,PAN,0,0,14.46
+23,Cervix uteri,598,Papua New Guinea,PNG,0,0,27.77
+23,Cervix uteri,600,Paraguay,PRY,0,0,30.61
+23,Cervix uteri,604,Peru,PER,0,0,23.9
+23,Cervix uteri,608,Philippines,PHL,0,0,15.51
+23,Cervix uteri,616,Poland,POL,0,0,11.32
+23,Cervix uteri,620,Portugal,PRT,0,0,11.08
+23,Cervix uteri,624,Guinea-Bissau,GNB,0,0,34.3
+23,Cervix uteri,626,Timor-Leste,TLS,0,0,14.75
+23,Cervix uteri,630,Puerto Rico,PRI,0,0,10.58
+23,Cervix uteri,634,Qatar,QAT,0,0,4.67
+23,Cervix uteri,638,"France, La Réunion",REU,0,0,10.97
+23,Cervix uteri,642,Romania,ROU,0,0,21.67
+23,Cervix uteri,643,Russian Federation,RUS,0,0,17.56
+23,Cervix uteri,646,Rwanda,RWA,0,0,18.92
+23,Cervix uteri,662,Saint Lucia,LCA,0,0,15.72
+23,Cervix uteri,678,Sao Tome and Principe,STP,0,0,18.77
+23,Cervix uteri,682,Saudi Arabia,SAU,0,0,2.36
+23,Cervix uteri,686,Senegal,SEN,0,0,34.26
+23,Cervix uteri,688,Serbia,SRB,0,0,13.35
+23,Cervix uteri,694,Sierra Leone,SLE,0,0,16.46
+23,Cervix uteri,702,Singapore,SGP,0,0,7.42
+23,Cervix uteri,703,Slovakia,SVK,0,0,12.93
+23,Cervix uteri,704,Viet Nam,VNM,0,0,7.12
+23,Cervix uteri,705,Slovenia,SVN,0,0,7.16
+23,Cervix uteri,706,Somalia,SOM,0,0,26.58
+23,Cervix uteri,710,South Africa,ZAF,0,0,33.18
+23,Cervix uteri,716,Zimbabwe,ZWE,0,0,68.2
+23,Cervix uteri,724,Spain,ESP,0,0,5.44
+23,Cervix uteri,728,South Sudan,SSD,0,0,21.42
+23,Cervix uteri,729,Sudan,SDN,0,0,8.6
+23,Cervix uteri,740,Suriname,SUR,0,0,24.2
+23,Cervix uteri,748,Eswatini,SWZ,0,0,95.89
+23,Cervix uteri,752,Sweden,SWE,0,0,8.55
+23,Cervix uteri,756,Switzerland,CHE,0,0,4.08
+23,Cervix uteri,760,Syrian Arab Republic,SYR,0,0,2.51
+23,Cervix uteri,762,Tajikistan,TJK,0,0,6.64
+23,Cervix uteri,764,Thailand,THA,0,0,14.91
+23,Cervix uteri,768,Togo,TGO,0,0,19.05
+23,Cervix uteri,780,Trinidad and Tobago,TTO,0,0,18.28
+23,Cervix uteri,784,United Arab Emirates,ARE,0,0,5.7
+23,Cervix uteri,788,Tunisia,TUN,0,0,5.25
+23,Cervix uteri,792,Türkiye,TUR,0,0,4.75
+23,Cervix uteri,795,Turkmenistan,TKM,0,0,14.1
+23,Cervix uteri,800,Uganda,UGA,0,0,53.76
+23,Cervix uteri,804,Ukraine,UKR,0,0,15.24
+23,Cervix uteri,807,North Macedonia,MKD,0,0,6.72
+23,Cervix uteri,818,Egypt,EGY,0,0,2.77
+23,Cervix uteri,826,United Kingdom,GBR,0,0,7.51
+23,Cervix uteri,834,"Tanzania, United Republic of",TZA,0,0,64.75
+23,Cervix uteri,840,United States of America,USA,0,0,6.32
+23,Cervix uteri,854,Burkina Faso,BFA,0,0,15.88
+23,Cervix uteri,858,Uruguay,URY,0,0,15.94
+23,Cervix uteri,860,Uzbekistan,UZB,0,0,14.81
+23,Cervix uteri,862,Venezuela,VEN,0,0,22.73
+23,Cervix uteri,882,Samoa,WSM,0,0,13.29
+23,Cervix uteri,887,Yemen,YEM,0,0,2.14
+23,Cervix uteri,894,Zambia,ZMB,0,0,71.5

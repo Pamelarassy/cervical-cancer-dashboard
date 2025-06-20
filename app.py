@@ -33,7 +33,7 @@ with left_col:
 # -------------------- RIGHT COLUMN CHARTS --------------------
 with right_col:
     # Pie Chart
-    pie_path = r"C:/Users/Pamela/OneDrive/Desktop/cevrical cancer/dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv"
+    pie_path = "dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv"
     df_pie = pd.read_csv(pie_path)
     df_pie.columns = df_pie.columns.str.strip().str.lower()
 
@@ -50,7 +50,7 @@ with right_col:
         st.plotly_chart(fig_pie, use_container_width=True)
 
     # Biopsy Age Group Chart
-    biopsy_path = r"C:/Users/Pamela/OneDrive/Desktop/cevrical cancer/cleaned_cervical_cancer_dataset.csv"
+    biopsy_path = "cleaned_cervical_cancer_dataset.csv"
     biopsy_df = pd.read_csv(biopsy_path)
     biopsy_df.columns = biopsy_df.columns.str.strip().str.lower()
     bins = [10, 20, 30, 40, 50, 60]
@@ -114,7 +114,7 @@ with right_col:
 # -------------------- LEFT COLUMN MAIN VISUALIZATION --------------------
 with left_col:
     # Choropleth
-    asr_path = r"C:/Users/Pamela/OneDrive/Desktop/cevrical cancer/dataset-asr-inc-both-sexes-in-2022-cervix-uteri.csv"
+    asr_path = "dataset-asr-inc-both-sexes-in-2022-cervix-uteri.csv"
     df_asr = pd.read_csv(asr_path)
     df_asr.columns = df_asr.columns.str.strip()
     fig_map = px.choropleth(
@@ -132,7 +132,7 @@ with left_col:
     st.plotly_chart(fig_map, use_container_width=True)
 
     # Line chart: HPV immunization by region
-    df_line = pd.read_csv(r"C:/Users/Pamela/OneDrive/Desktop/cevrical cancer/data.csv")
+    df_line = pd.read_csv("data.csv")
     df_line.columns = df_line.columns.str.strip()
     df_clean = df_line[['ParentLocationCode', 'Period', 'FactValueNumeric']].dropna()
     df_grouped = df_clean.groupby(['ParentLocationCode', 'Period'], as_index=False)['FactValueNumeric'].mean()

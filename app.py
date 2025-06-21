@@ -4,31 +4,31 @@ import plotly.express as px
 
 # Layout config
 st.set_page_config(page_title="Cervical Cancer Dashboard", layout="wide", initial_sidebar_state="collapsed")
-st.markdown("<h4 style='text-align:center;'>Cervical Cancer: Global Snapshot (2022)</h4>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align:center;'>Cervical Cancer: Global Snapshot (2022)</h2>", unsafe_allow_html=True)
 
-# Row 1: Incidence + Mortality | Pie Chart
-col1_left, col1_right = st.columns([1, 1])
+# ROW 1: Incidence & Mortality (left) | Pie Chart (right)
+col1_left, col1_right = st.columns([2, 2])
 with col1_left:
     st.markdown(
         """
-        <div style='font-size:16px;'>
+        <div style='font-size:16px; padding-top:5px;'>
             <b style='color:#004B9B;'>Incidence Rank:</b> 8<br>
             <b>Cases:</b> 662,301<br><br>
             <b style='color:#D7191C;'>Mortality Rank:</b> 9<br>
             <b>Deaths:</b> 348,874
         </div>
-        """,
-        unsafe_allow_html=True
+        """, unsafe_allow_html=True
     )
+
 with col1_right:
     df_pie = pd.read_csv("dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv")
     df_pie.columns = df_pie.columns.str.strip().str.lower()
     fig_pie = px.pie(df_pie, names="label", values="total", hole=0.4)
-    fig_pie.update_layout(height=200, margin=dict(t=10, b=10), showlegend=False)
+    fig_pie.update_layout(height=280, margin=dict(t=20, b=20), showlegend=False)
     st.plotly_chart(fig_pie, use_container_width=True)
 
-# Row 2: Choropleth Map | Biopsy Chart
-col2_left, col2_right = st.columns([1, 1])
+# ROW 2: Choropleth (left) | Biopsy Chart (right)
+col2_left, col2_right = st.columns([2, 2])
 with col2_left:
     df_map = pd.read_csv("dataset-asr-inc-both-sexes-in-2022-cervix-uteri.csv")
     df_map.columns = df_map.columns.str.strip()
@@ -39,7 +39,7 @@ with col2_left:
         color="ASR (World) per 100 000",
         color_continuous_scale="YlOrRd"
     )
-    fig_map.update_layout(height=220, margin=dict(t=10, b=10), coloraxis_showscale=False)
+    fig_map.update_layout(height=300, margin=dict(t=10, b=10), coloraxis_showscale=False)
     st.plotly_chart(fig_map, use_container_width=True)
 
 with col2_right:
@@ -50,18 +50,18 @@ with col2_right:
     df_biopsy['age group'] = pd.cut(df_biopsy['age'], bins=bins, labels=labels_age, right=False)
     trend = df_biopsy.groupby('age group')['biopsy'].mean().reset_index().dropna()
     fig_biopsy = px.bar(trend, x='biopsy', y='age group', orientation='h', color_discrete_sequence=['#1f77b4'])
-    fig_biopsy.update_layout(height=220, xaxis_range=[0, 1], xaxis_tickformat=".0%", margin=dict(t=10, b=10), showlegend=False)
+    fig_biopsy.update_layout(height=300, xaxis_range=[0, 1], xaxis_tickformat=".0%", margin=dict(t=10, b=10), showlegend=False)
     st.plotly_chart(fig_biopsy, use_container_width=True)
 
-# Row 3: Line Chart | HPV & Cancer Status
-col3_left, col3_right = st.columns([1, 1])
+# ROW 3: Line Chart (left) | HPV & Cancer Chart (right)
+col3_left, col3_right = st.columns([2, 2])
 with col3_left:
     df_line = pd.read_csv("data.csv")
     df_line.columns = df_line.columns.str.strip()
     df_line = df_line[['ParentLocationCode', 'Period', 'FactValueNumeric']].dropna()
     df_group = df_line.groupby(['ParentLocationCode', 'Period'], as_index=False)['FactValueNumeric'].mean()
     fig_line = px.line(df_group, x='Period', y='FactValueNumeric', color='ParentLocationCode', markers=True)
-    fig_line.update_layout(height=220, yaxis_range=[0, 100], margin=dict(t=10, b=10), showlegend=False)
+    fig_line.update_layout(height=300, yaxis_range=[0, 100], margin=dict(t=10, b=10), showlegend=False)
     st.plotly_chart(fig_line, use_container_width=True)
 
 with col3_right:
@@ -77,5 +77,6 @@ with col3_right:
     fig_status = px.bar(df_status, x="Status", y="Percentage", text="Percentage",
                         color="Status", color_discrete_map={"HPV & Cancer": "crimson", "HPV & No Cancer": "steelblue"})
     fig_status.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
-    fig_status.update_layout(height=220, margin=dict(t=10, b=10), showlegend=False)
+    fig_status.update_layout(height=300, margin=dict(t=10, b=10), showlegend=False)
     st.plotly_chart(fig_status, use_container_width=True)
+

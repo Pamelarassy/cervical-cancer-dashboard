@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 # Set wide layout and title
 st.set_page_config(page_title="Cervical Cancer: Global Burden and Trends", layout="wide")
-st.title("Cervical Cancer: Global Burden and Trends Dashboard")
+st.markdown("<h1 style='font-size:26px;'>Cervical Cancer: Global Burden and Trends Dashboard</h1>", unsafe_allow_html=True)
 
 # -------------------- SECTION 1: Summary Indicators --------------------
 left_col, right_col = st.columns([2, 1])

@@ -3,9 +3,15 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-# Set wide layout and title
+# Set layout
 st.set_page_config(page_title="Cervical Cancer: Global Burden and Trends", layout="wide")
+
+# Custom title with smaller font
 st.markdown("<h1 style='font-size:26px;'>Cervical Cancer: Global Burden and Trends Dashboard</h1>", unsafe_allow_html=True)
+
+# Define consistent chart heights (5% smaller)
+CHART_HEIGHT_SMALL = 237  # was 250
+CHART_HEIGHT_LARGE = 285  # was 300
 
 # -------------------- SECTION 1: Summary Indicators --------------------
 left_col, right_col = st.columns([2, 1])
@@ -32,7 +38,6 @@ with left_col:
 
 # -------------------- RIGHT COLUMN CHARTS --------------------
 with right_col:
-    # PIE CHART
     pie_path = "dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv"
     df_pie = pd.read_csv(pie_path)
     df_pie.columns = df_pie.columns.str.strip().str.lower()
@@ -48,12 +53,11 @@ with right_col:
         fig_pie.update_layout(
             title_text="Cervical Cancer by Continent (2022)",
             showlegend=False,
-            height=250,
+            height=CHART_HEIGHT_SMALL,
             margin=dict(t=40, b=10)
         )
         st.plotly_chart(fig_pie, use_container_width=True)
 
-    # BIOPSY AGE GROUP CHART
     biopsy_path = "cleaned_cervical_cancer_dataset.csv"
     biopsy_df = pd.read_csv(biopsy_path)
     biopsy_df.columns = biopsy_df.columns.str.strip().str.lower()
@@ -78,7 +82,7 @@ with right_col:
             yaxis_title='Age Group',
             xaxis_range=[0, 1],
             xaxis_tickformat=".0%",
-            height=250,
+            height=CHART_HEIGHT_SMALL,
             plot_bgcolor='white',
             margin=dict(t=40, b=10)
         )
@@ -86,7 +90,6 @@ with right_col:
     else:
         st.warning("Column 'biopsy' not found in the dataset.")
 
-    # HPV & CANCER BAR CHART
     df = pd.read_csv(biopsy_path)
     df.columns = df.columns.str.strip().str.lower()
 
@@ -119,7 +122,7 @@ with right_col:
             yaxis_title="Percentage",
             xaxis_title=None,
             showlegend=False,
-            height=250,
+            height=CHART_HEIGHT_SMALL,
             margin=dict(t=40, b=10)
         )
         st.plotly_chart(fig, use_container_width=True)
@@ -128,7 +131,6 @@ with right_col:
 
 # -------------------- LEFT COLUMN MAP + LINE CHART --------------------
 with left_col:
-    # CHOROPLETH MAP
     asr_path = "dataset-asr-inc-both-sexes-in-2022-cervix-uteri.csv"
     df_asr = pd.read_csv(asr_path)
     df_asr.columns = df_asr.columns.str.strip()
@@ -143,10 +145,9 @@ with left_col:
         title="ASR per 100,000 - Cervix Uteri (2022)",
         projection="natural earth"
     )
-    fig_map.update_layout(geo=dict(showframe=False, showcoastlines=True), height=300, margin=dict(t=40, b=10))
+    fig_map.update_layout(geo=dict(showframe=False, showcoastlines=True), height=CHART_HEIGHT_LARGE, margin=dict(t=40, b=10))
     st.plotly_chart(fig_map, use_container_width=True)
 
-    # LINE CHART: HPV IMMUNIZATION
     df_line = pd.read_csv("data.csv")
     df_line.columns = df_line.columns.str.strip()
     df_clean = df_line[['ParentLocationCode', 'Period', 'FactValueNumeric']].dropna()
@@ -165,6 +166,5 @@ with left_col:
             'ParentLocationCode': 'WHO Region'
         }
     )
-    fig_line.update_layout(yaxis_range=[0, 100], height=300, margin=dict(t=40, b=10))
+    fig_line.update_layout(yaxis_range=[0, 100], height=CHART_HEIGHT_LARGE, margin=dict(t=40, b=10))
     st.plotly_chart(fig_line, use_container_width=True)
-

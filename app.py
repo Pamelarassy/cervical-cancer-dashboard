@@ -9,9 +9,9 @@ st.set_page_config(page_title="Cervical Cancer: Global Burden and Trends", layou
 # Custom title with smaller font
 st.markdown("<h1 style='font-size:26px;'>Cervical Cancer: Global Burden and Trends Dashboard</h1>", unsafe_allow_html=True)
 
-# Define consistent chart heights (5% smaller)
-CHART_HEIGHT_SMALL = 237  # was 250
-CHART_HEIGHT_LARGE = 285  # was 300
+# Define chart heights after 10% total reduction
+CHART_HEIGHT_SMALL = 225
+CHART_HEIGHT_LARGE = 270
 
 # -------------------- SECTION 1: Summary Indicators --------------------
 left_col, right_col = st.columns([2, 1])

@@ -1,84 +1,155 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
-# Layout config
-st.set_page_config(page_title="Cervical Cancer Dashboard", layout="wide", initial_sidebar_state="collapsed")
-st.markdown("<h4 style='text-align:center;'>Cervical Cancer: Global Snapshot (2022)</h4>", unsafe_allow_html=True)
+# Set wide layout and title
+st.set_page_config(page_title="Cervical Cancer: Global Burden and Trends", layout="wide")
+st.title("Cervical Cancer: Global Burden and Trends Dashboard")
 
-# Split the page into left and right columns
-col_left, col_right = st.columns([1.5, 1])
+# -------------------- SECTION 1: Summary Indicators --------------------
+left_col, right_col = st.columns([2, 1])
 
-# ---------------- LEFT COLUMN ----------------
-with col_left:
-    # Incidence + Mortality summary
-    st.markdown(
-        """
-        <div style='font-size:14px;'>
-            <b style='color:#004B9B;'>Incidence Rank:</b> 8 &nbsp;&nbsp;&nbsp;&nbsp;
-            <b>Cases:</b> 662,301<br>
-            <b style='color:#D7191C;'>Mortality Rank:</b> 9 &nbsp;&nbsp;&nbsp;&nbsp;
-            <b>Deaths:</b> 348,874
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+with left_col:
+    col_inc, col_mort = st.columns(2)
+    with col_inc:
+        st.markdown("""
+        <h2 style='color:#004B9B;'>Incidence</h2>
+        <p style='color:#004B9B; font-size:20px;'>
+        <b>Rank:</b> <span style='font-size:28px; font-weight:bold;'>8</span> &nbsp;&nbsp;&nbsp;&nbsp;
+        <b>Cases:</b> <span style='font-size:28px; font-weight:bold;'>662,301</span>
+        </p>
+        """, unsafe_allow_html=True)
 
-    # Choropleth Map
-    df_map = pd.read_csv("dataset-asr-inc-both-sexes-in-2022-cervix-uteri.csv")
-    df_map.columns = df_map.columns.str.strip()
-    fig_map = px.choropleth(
-        df_map,
-        locations="Population",
-        locationmode="country names",
-        color="ASR (World) per 100 000",
-        color_continuous_scale="YlOrRd"
-    )
-    fig_map.update_layout(height=240, margin=dict(t=10, b=10), coloraxis_showscale=False)
-    st.plotly_chart(fig_map, use_container_width=True)
+    with col_mort:
+        st.markdown("""
+        <h2 style='color:#D7191C;'>Mortality</h2>
+        <p style='color:#D7191C; font-size:20px;'>
+        <b>Rank:</b> <span style='font-size:28px; font-weight:bold;'>9</span> &nbsp;&nbsp;&nbsp;&nbsp;
+        <b>Deaths:</b> <span style='font-size:28px; font-weight:bold;'>348,874</span>
+        </p>
+        """, unsafe_allow_html=True)
 
-    # HPV Vaccine Line Chart
-    df_line = pd.read_csv("data.csv")
-    df_line.columns = df_line.columns.str.strip()
-    df_line = df_line[['ParentLocationCode', 'Period', 'FactValueNumeric']].dropna()
-    df_group = df_line.groupby(['ParentLocationCode', 'Period'], as_index=False)['FactValueNumeric'].mean()
-    fig_line = px.line(df_group, x='Period', y='FactValueNumeric', color='ParentLocationCode', markers=True)
-    fig_line.update_layout(height=240, yaxis_range=[0, 100], margin=dict(t=10, b=10), showlegend=False)
-    st.plotly_chart(fig_line, use_container_width=True)
-
-# ---------------- RIGHT COLUMN ----------------
-with col_right:
-    # Pie Chart
-    df_pie = pd.read_csv("dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv")
+# -------------------- RIGHT COLUMN CHARTS --------------------
+with right_col:
+    pie_path = "dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv"
+    df_pie = pd.read_csv(pie_path)
     df_pie.columns = df_pie.columns.str.strip().str.lower()
-    fig_pie = px.pie(df_pie, names="label", values="total", hole=0.4)
-    fig_pie.update_layout(height=200, margin=dict(t=10, b=10), showlegend=False)
-    st.plotly_chart(fig_pie, use_container_width=True)
 
-    # Biopsy Chart
-    df = pd.read_csv("cleaned_cervical_cancer_dataset.csv")
-    df.columns = df.columns.str.strip().str.lower()
+    if "label" in df_pie.columns and "total" in df_pie.columns:
+        fig_pie = px.pie(
+            df_pie,
+            names="label",
+            values="total",
+            hole=0.4
+        )
+        fig_pie.update_traces(textinfo="label+percent", textfont_size=12)
+        fig_pie.update_layout(
+            title_text="Cervical Cancer by Continent (2022)",
+            showlegend=False,
+            height=250,
+            margin=dict(t=40, b=10)
+        )
+        st.plotly_chart(fig_pie, use_container_width=True)
+
+    biopsy_path = "cleaned_cervical_cancer_dataset.csv"
+    biopsy_df = pd.read_csv(biopsy_path)
+    biopsy_df.columns = biopsy_df.columns.str.strip().str.lower()
     bins = [10, 20, 30, 40, 50, 60]
     labels_age = ['10-19', '20-29', '30-39', '40-49', '50-59']
-    df['age group'] = pd.cut(df['age'], bins=bins, labels=labels_age, right=False)
-    trend = df.groupby('age group')['biopsy'].mean().reset_index().dropna()
-    fig_biopsy = px.bar(trend, x='biopsy', y='age group', orientation='h', color_discrete_sequence=['#1f77b4'])
-    fig_biopsy.update_layout(height=200, xaxis_range=[0, 1], xaxis_tickformat=".0%", margin=dict(t=10, b=10), showlegend=False)
+    biopsy_df['age group'] = pd.cut(biopsy_df['age'], bins=bins, labels=labels_age, right=False)
+    age_group_trend = biopsy_df.groupby('age group')['biopsy'].mean().reset_index().dropna()
+
+    fig_biopsy = px.bar(
+        age_group_trend,
+        x='biopsy',
+        y='age group',
+        orientation='h',
+        color_discrete_sequence=['steelblue'],
+        title="Biopsy-Positive Rate by Age Group"
+    )
+    fig_biopsy.update_layout(
+        xaxis_title='Percentage',
+        yaxis_title='Age Group',
+        xaxis_range=[0, 1],
+        xaxis_tickformat=".0%",
+        height=250,
+        plot_bgcolor='white',
+        margin=dict(t=40, b=10)
+    )
     st.plotly_chart(fig_biopsy, use_container_width=True)
 
-    # HPV & Cancer Status
+    df = pd.read_csv(biopsy_path)
     df.columns = df.columns.str.strip()
     hpv_positive = df[df['Dx:HPV'] == 1]
     with_cancer = hpv_positive['Dx:Cancer'].sum()
     without_cancer = len(hpv_positive) - with_cancer
-    df_status = pd.DataFrame({
-        "Status": ['HPV & Cancer', 'HPV & No Cancer'],
+
+    data = pd.DataFrame({
+        "Cancer Status": ['HPV & Cancer', 'HPV & No Cancer'],
         "Percentage": [with_cancer / len(hpv_positive) * 100,
                        without_cancer / len(hpv_positive) * 100]
     })
-    fig_status = px.bar(df_status, x="Status", y="Percentage", text="Percentage",
-                        color="Status", color_discrete_map={"HPV & Cancer": "crimson", "HPV & No Cancer": "steelblue"})
-    fig_status.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
-    fig_status.update_layout(height=200, margin=dict(t=10, b=10), showlegend=False)
-    st.plotly_chart(fig_status, use_container_width=True)
 
+    fig = px.bar(
+        data,
+        x="Cancer Status",
+        y="Percentage",
+        color="Cancer Status",
+        color_discrete_map={
+            "HPV & Cancer": "crimson",
+            "HPV & No Cancer": "steelblue"
+        },
+        text="Percentage",
+        title="Cancer Diagnosis Among HPV-Positive Patients"
+    )
+
+    fig.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
+    fig.update_layout(
+        yaxis_title="Percentage",
+        xaxis_title=None,
+        showlegend=False,
+        height=250,
+        margin=dict(t=40, b=10)
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+# -------------------- LEFT COLUMN MAP + LINE CHART --------------------
+with left_col:
+    asr_path = "dataset-asr-inc-both-sexes-in-2022-cervix-uteri.csv"
+    df_asr = pd.read_csv(asr_path)
+    df_asr.columns = df_asr.columns.str.strip()
+    fig_map = px.choropleth(
+        df_asr,
+        locations="Population",
+        locationmode="country names",
+        color="ASR (World) per 100 000",
+        color_continuous_scale="YlOrRd",
+        range_color=(0, df_asr["ASR (World) per 100 000"].max()),
+        labels={"ASR (World) per 100 000": "ASR per 100k"},
+        title="ASR per 100,000 - Cervix Uteri (2022)",
+        projection="natural earth"
+    )
+    fig_map.update_layout(geo=dict(showframe=False, showcoastlines=True), height=300, margin=dict(t=40, b=10))
+    st.plotly_chart(fig_map, use_container_width=True)
+
+    df_line = pd.read_csv("data.csv")
+    df_line.columns = df_line.columns.str.strip()
+    df_clean = df_line[['ParentLocationCode', 'Period', 'FactValueNumeric']].dropna()
+    df_grouped = df_clean.groupby(['ParentLocationCode', 'Period'], as_index=False)['FactValueNumeric'].mean()
+
+    fig_line = px.line(
+        df_grouped,
+        x='Period',
+        y='FactValueNumeric',
+        color='ParentLocationCode',
+        markers=True,
+        title="HPV Immunization Among Girls (9–14) by Region (%)",
+        labels={
+            'Period': 'Year',
+            'FactValueNumeric': 'Coverage (%)',
+            'ParentLocationCode': 'WHO Region'
+        }
+    )
+    fig_line.update_layout(yaxis_range=[0, 100], height=300, margin=dict(t=40, b=10))
+    st.plotly_chart(fig_line, use_container_width=True)

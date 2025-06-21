@@ -32,6 +32,7 @@ with left_col:
 
 # -------------------- RIGHT COLUMN CHARTS --------------------
 with right_col:
+    # PIE CHART
     pie_path = "dataset-absolute-numbers-inc-both-sexes-in-2022-cervix-uteri.csv"
     df_pie = pd.read_csv(pie_path)
     df_pie.columns = df_pie.columns.str.strip().str.lower()
@@ -52,70 +53,82 @@ with right_col:
         )
         st.plotly_chart(fig_pie, use_container_width=True)
 
+    # BIOPSY AGE GROUP CHART
     biopsy_path = "cleaned_cervical_cancer_dataset.csv"
     biopsy_df = pd.read_csv(biopsy_path)
     biopsy_df.columns = biopsy_df.columns.str.strip().str.lower()
-    bins = [10, 20, 30, 40, 50, 60]
-    labels_age = ['10-19', '20-29', '30-39', '40-49', '50-59']
-    biopsy_df['age group'] = pd.cut(biopsy_df['age'], bins=bins, labels=labels_age, right=False)
-    age_group_trend = biopsy_df.groupby('age group')['biopsy'].mean().reset_index().dropna()
 
-    fig_biopsy = px.bar(
-        age_group_trend,
-        x='biopsy',
-        y='age group',
-        orientation='h',
-        color_discrete_sequence=['steelblue'],
-        title="Biopsy-Positive Rate by Age Group"
-    )
-    fig_biopsy.update_layout(
-        xaxis_title='Percentage',
-        yaxis_title='Age Group',
-        xaxis_range=[0, 1],
-        xaxis_tickformat=".0%",
-        height=250,
-        plot_bgcolor='white',
-        margin=dict(t=40, b=10)
-    )
-    st.plotly_chart(fig_biopsy, use_container_width=True)
+    if "biopsy" in biopsy_df.columns:
+        biopsy_df["biopsy"] = pd.to_numeric(biopsy_df["biopsy"], errors="coerce")
+        bins = [10, 20, 30, 40, 50, 60]
+        labels_age = ['10-19', '20-29', '30-39', '40-49', '50-59']
+        biopsy_df['age group'] = pd.cut(biopsy_df['age'], bins=bins, labels=labels_age, right=False)
+        age_group_trend = biopsy_df.groupby('age group')['biopsy'].mean().reset_index().dropna()
 
+        fig_biopsy = px.bar(
+            age_group_trend,
+            x='biopsy',
+            y='age group',
+            orientation='h',
+            color_discrete_sequence=['steelblue'],
+            title="Biopsy-Positive Rate by Age Group"
+        )
+        fig_biopsy.update_layout(
+            xaxis_title='Percentage with Cancer',
+            yaxis_title='Age Group',
+            xaxis_range=[0, 1],
+            xaxis_tickformat=".0%",
+            height=250,
+            plot_bgcolor='white',
+            margin=dict(t=40, b=10)
+        )
+        st.plotly_chart(fig_biopsy, use_container_width=True)
+    else:
+        st.warning("Column 'biopsy' not found in the dataset.")
+
+    # HPV & CANCER BAR CHART
     df = pd.read_csv(biopsy_path)
-    df.columns = df.columns.str.strip()
-    hpv_positive = df[df['Dx:HPV'] == 1]
-    with_cancer = hpv_positive['Dx:Cancer'].sum()
-    without_cancer = len(hpv_positive) - with_cancer
+    df.columns = df.columns.str.strip().str.lower()
 
-    data = pd.DataFrame({
-        "Cancer Status": ['HPV & Cancer', 'HPV & No Cancer'],
-        "Percentage": [with_cancer / len(hpv_positive) * 100,
-                       without_cancer / len(hpv_positive) * 100]
-    })
+    if "dx:hpv" in df.columns and "dx:cancer" in df.columns:
+        hpv_positive = df[df['dx:hpv'] == 1]
+        with_cancer = hpv_positive['dx:cancer'].sum()
+        without_cancer = len(hpv_positive) - with_cancer
 
-    fig = px.bar(
-        data,
-        x="Cancer Status",
-        y="Percentage",
-        color="Cancer Status",
-        color_discrete_map={
-            "HPV & Cancer": "crimson",
-            "HPV & No Cancer": "steelblue"
-        },
-        text="Percentage",
-        title="Cancer Diagnosis Among HPV-Positive Patients"
-    )
+        data = pd.DataFrame({
+            "Cancer Status": ['HPV & Cancer', 'HPV & No Cancer'],
+            "Percentage": [with_cancer / len(hpv_positive) * 100,
+                           without_cancer / len(hpv_positive) * 100]
+        })
 
-    fig.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
-    fig.update_layout(
-        yaxis_title="Percentage",
-        xaxis_title=None,
-        showlegend=False,
-        height=250,
-        margin=dict(t=40, b=10)
-    )
-    st.plotly_chart(fig, use_container_width=True)
+        fig = px.bar(
+            data,
+            x="Cancer Status",
+            y="Percentage",
+            color="Cancer Status",
+            color_discrete_map={
+                "HPV & Cancer": "crimson",
+                "HPV & No Cancer": "steelblue"
+            },
+            text="Percentage",
+            title="Cancer Diagnosis Among HPV-Positive Patients"
+        )
+
+        fig.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
+        fig.update_layout(
+            yaxis_title="Percentage",
+            xaxis_title=None,
+            showlegend=False,
+            height=250,
+            margin=dict(t=40, b=10)
+        )
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.warning("Required columns 'dx:hpv' or 'dx:cancer' not found.")
 
 # -------------------- LEFT COLUMN MAP + LINE CHART --------------------
 with left_col:
+    # CHOROPLETH MAP
     asr_path = "dataset-asr-inc-both-sexes-in-2022-cervix-uteri.csv"
     df_asr = pd.read_csv(asr_path)
     df_asr.columns = df_asr.columns.str.strip()
@@ -133,6 +146,7 @@ with left_col:
     fig_map.update_layout(geo=dict(showframe=False, showcoastlines=True), height=300, margin=dict(t=40, b=10))
     st.plotly_chart(fig_map, use_container_width=True)
 
+    # LINE CHART: HPV IMMUNIZATION
     df_line = pd.read_csv("data.csv")
     df_line.columns = df_line.columns.str.strip()
     df_clean = df_line[['ParentLocationCode', 'Period', 'FactValueNumeric']].dropna()
@@ -153,3 +167,4 @@ with left_col:
     )
     fig_line.update_layout(yaxis_range=[0, 100], height=300, margin=dict(t=40, b=10))
     st.plotly_chart(fig_line, use_container_width=True)
+

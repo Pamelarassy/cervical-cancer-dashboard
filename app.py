@@ -9,9 +9,10 @@ st.set_page_config(page_title="Cervical Cancer: Global Burden and Trends", layou
 # Custom title with smaller font
 st.markdown("<h1 style='font-size:26px;'>Cervical Cancer: Global Burden and Trends Dashboard</h1>", unsafe_allow_html=True)
 
-# Define chart heights after 10% total reduction
-CHART_HEIGHT_SMALL = 225
-CHART_HEIGHT_LARGE = 270
+# Define chart heights after reduction
+CHART_HEIGHT_SMALL = 225           # ~10% reduction
+CHART_HEIGHT_LARGE = 270           # ~10% reduction
+CHART_HEIGHT_EXTRA_SMALL = 213     # 15% reduction (for HPV + Cancer)
 
 # -------------------- SECTION 1: Summary Indicators --------------------
 left_col, right_col = st.columns([2, 1])
@@ -122,7 +123,7 @@ with right_col:
             yaxis_title="Percentage",
             xaxis_title=None,
             showlegend=False,
-            height=CHART_HEIGHT_SMALL,
+            height=CHART_HEIGHT_EXTRA_SMALL,
             margin=dict(t=40, b=10)
         )
         st.plotly_chart(fig, use_container_width=True)

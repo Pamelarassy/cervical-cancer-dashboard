@@ -81,3 +81,4 @@ with col_right:
     fig_status.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
     fig_status.update_layout(height=200, margin=dict(t=10, b=10), showlegend=False)
     st.plotly_chart(fig_status, use_container_width=True)
+
